@@ -1,0 +1,31 @@
+# Validation Diff: pcs-developer-runtime
+# Validated commit: b024757 (2026-07-21, Round 6, Saad Muzafar)
+# Release commit: 8bc7347 (current HEAD)
+
+## Post-Validation Changes (8 commits, 2026-07-22 to 2026-07-23)
+Documentation cleanup + security patches + unified release identity.
+
+ INTELLECTUAL_PROPERTY_NOTICE.md | 285 ++++++++++++++++++++++++++++++++++++++++
+ RELEASE.md                      |  27 ++++
+ SECURITY.md                     |  92 +++++++++++++
+ START_HERE.md                   |   2 -
+ TUTORIAL_VERIFICATION.md        | 240 ---------------------------------
+ VALIDATION_DIFF.txt             |  27 ++++
+ package-lock.json               |  16 +--
+ 7 files changed, 439 insertions(+), 250 deletions(-)
+
+A	INTELLECTUAL_PROPERTY_NOTICE.md
+A	RELEASE.md
+A	SECURITY.md
+M	START_HERE.md
+D	TUTORIAL_VERIFICATION.md
+A	VALIDATION_DIFF.txt
+M	package-lock.json
+
+## Analysis:
+- INTELLECTUAL_PROPERTY_NOTICE.md: Added (documentation)
+- RELEASE.md: Added (unified release identity)
+- SECURITY.md: Added (documentation)
+- START_HERE.md: Updated (documentation)
+- TUTORIAL_VERIFICATION.md: Deleted (documentation)
+- VALIDATION_DIFF.txt: Added (documentation of this diff)

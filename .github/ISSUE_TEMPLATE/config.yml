@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 💬 Technical Questions & Discussions
+    url: https://github.com/persistra-ai/pcs-developer-runtime/discussions
+    about: For setup help, architecture questions, and community support
+  - name: 📚 Documentation
+    url: https://github.com/persistra-ai/pcs-developer-runtime/blob/main/README.md
+    about: Start with the README and TUTORIAL for getting started
+  - name: 🏗️ Architecture Context
+    url: https://github.com/persistra-ai/persistra-public
+    about: For deeper architectural understanding of PCS

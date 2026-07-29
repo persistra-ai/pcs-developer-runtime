@@ -1,0 +1,157 @@
+LICENSE
+
+PCS Developer Runtime Evaluation License v1.0
+Copyright (c) 2026 Exocortical Concepts, Inc.
+All rights reserved.
+
+1. Purpose
+
+This License governs the use of the software, source code, documentation, examples, scripts, and related materials made available in this repository (the "Software").
+
+The Software is provided as a public evaluation runtime for learning about, evaluating, and testing the PCS Developer Runtime in local, non-production settings.
+
+This License does not grant rights to the full Persistra Cognitive Substrate, full PCS reference implementation, validation suites, standards artifacts, commercial runtime, conformance rights, trademarks, patents, or any other intellectual property except as expressly stated below.
+
+2. Definitions
+
+For purposes of this License:
+	•"Licensor" means Exocortical Concepts, Inc.
+	•"You" means the individual or entity exercising rights under this License.
+	•"Software" means the source code, object code, documentation, examples, scripts, and materials contained in this repository.
+	•"Internal Evaluation" means local, non-production use by You or within Your organization solely for testing, learning, review, experimentation, and technical evaluation.
+	•"Commercial Use" means any use intended for commercial advantage or monetary compensation, including offering the Software as a hosted service, bundling it into a product, using it in production operations, or providing services to third parties using the Software.
+	•"Production Use" means use in a live, operational, customer-facing, business-critical, organizational, or external-user environment, whether commercial or non-commercial.
+	•"Derivative Works" means modifications, adaptations, or other works based on the Software.
+
+3. Limited License Grant
+
+Subject to the terms and conditions of this License, Licensor grants You a limited, revocable, non-exclusive, non-transferable, non-sublicensable license to:
+	1.access, download, and use the Software;
+	2.run the Software locally;
+	3.modify the Software for Your own Internal Evaluation;
+	4.reproduce reasonable copies of the Software for backup and Internal Evaluation;
+	5.share feedback, bug reports, and suggested improvements with Licensor;
+	6.cite or reference the Software in academic, research, review, commentary, or discussion contexts.
+
+These rights are granted solely for Internal Evaluation and subject to all restrictions below.
+
+4. Restrictions
+
+Except as expressly permitted in Section 3, You may not, and may not permit any third party to:
+	1.use the Software for any Commercial Use;
+	2.use the Software for any Production Use;
+	3.offer the Software, or any modified version of it, as a service, hosted offering, managed service, SaaS product, API service, or platform;
+	4.sell, license, sublicense, rent, lease, distribute, or commercially transfer the Software or any Derivative Works;
+	5.redistribute the Software or Derivative Works in source or binary form outside Your organization without Licensor's prior written permission;
+6.use the Software to provide services to third parties;
+7.remove, alter, or obscure any copyright, license, attribution, or proprietary notice;
+8.represent that Your use, version, modification, or deployment of the Software is "PCS compliant," "PCS conformant," "official," "certified," "standards-compatible," or otherwise approved by Licensor;
+9.use any Licensor name, product name, trademark, service mark, or logo except for truthful, nominative reference to this repository and subject to applicable law;
+10.access or imply any right to the full PCS reference architecture, commercial runtime, validation suites, standards artifacts, certification path, patents, or other materials not included in this repository;
+11.use the Software in a way that violates applicable law;
+12.use the Software in a manner intended to compete directly with Licensor's commercial offerings based on the Software itself.
+
+5. Internal Organizational Use
+
+You may make the Software available internally within Your own organization only for Internal Evaluation, provided that all such users are bound by terms no less protective than this License.
+
+You are responsible for ensuring compliance by Your employees, contractors, and internal users.
+
+6. Modifications and Derivative Works
+
+You may create Derivative Works solely for Internal Evaluation.
+
+You may not distribute, publish, sublicense, sell, host, or otherwise make available any Derivative Works outside Your organization without Licensor's prior written permission.
+
+All Derivative Works remain subject to this License.
+
+7. Feedback
+
+If You provide suggestions, ideas, bug reports, comments, or other feedback regarding the Software ("Feedback"), You grant Licensor a perpetual, irrevocable, worldwide, non-exclusive, royalty-free right to use, copy, modify, incorporate, and exploit that Feedback for any purpose, without obligation to You.
+
+8. Ownership
+
+The Software is licensed, not sold.
+
+Licensor and its licensors retain all right, title, and interest in and to the Software, including all copyrights, trade secrets, patent rights, trademark rights, and all other intellectual property rights.
+
+No rights are granted by implication, estoppel, or otherwise except as expressly stated in this License.
+
+9. No Patent License
+
+No patent license is granted under this License, whether express or implied.
+
+Nothing in this License grants You any right under any patent or patent application owned or controlled by Licensor or its affiliates.
+
+If You need patent rights, commercial rights, production rights, standards rights, or conformance rights, You must obtain a separate written agreement from Licensor.
+
+10. No Support or Maintenance
+
+Licensor has no obligation to provide maintenance, support, updates, enhancements, or corrections for the Software under this License.
+
+Any support or access beyond this repository requires a separate written agreement.
+
+11. Evaluation Nature of Software
+
+The Software is provided as an evaluation artifact and may be incomplete, limited, experimental, or subject to change or withdrawal at any time.
+
+Licensor may modify, discontinue, or remove the Software or this repository at any time.
+
+12. Term and Termination
+
+This License is effective until terminated.
+
+This License terminates automatically if You violate any term of this License.
+
+Licensor may terminate this License immediately upon written notice if Licensor reasonably believes You have violated this License.
+
+Upon termination, You must immediately stop using the Software and destroy all copies in Your possession or control, except to the extent retention is required by law.
+
+Sections 7, 8, 9, 12, 13, 14, and 15 survive termination.
+
+13. Disclaimer of Warranties
+
+THE SOFTWARE IS PROVIDED "AS IS" AND "AS AVAILABLE", WITH ALL FAULTS.
+
+TO THE MAXIMUM EXTENT PERMITTED BY LAW, LICENSOR DISCLAIMS ALL WARRANTIES, EXPRESS, IMPLIED, STATUTORY, OR OTHERWISE, INCLUDING WITHOUT LIMITATION WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE, NON-INFRINGEMENT, QUIET ENJOYMENT, ACCURACY, OR THAT THE SOFTWARE WILL BE ERROR-FREE OR UNINTERRUPTED.
+
+YOU USE THE SOFTWARE AT YOUR OWN RISK.
+
+14. Limitation of Liability
+
+TO THE MAXIMUM EXTENT PERMITTED BY LAW, LICENSOR SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, EXEMPLARY, OR PUNITIVE DAMAGES, OR FOR ANY LOSS OF DATA, LOSS OF PROFITS, LOSS OF REVENUE, LOSS OF GOODWILL, BUSINESS INTERRUPTION, OR COST OF SUBSTITUTE TECHNOLOGY, ARISING OUT OF OR RELATED TO THIS LICENSE OR THE SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+
+TO THE MAXIMUM EXTENT PERMITTED BY LAW, LICENSOR'S TOTAL LIABILITY ARISING OUT OF OR RELATED TO THIS LICENSE OR THE SOFTWARE SHALL NOT EXCEED ONE HUNDRED U.S. DOLLARS (US $100).
+
+15. General
+
+15.1 Entire Agreement
+
+This License is the entire agreement between You and Licensor regarding the Software and supersedes prior or contemporaneous understandings regarding the Software under this repository.
+
+15.2 No Waiver
+
+Failure by Licensor to enforce any provision of this License is not a waiver of future enforcement.
+
+15.3 Severability
+
+If any provision of this License is held unenforceable, the remaining provisions will remain in effect to the maximum extent permitted by law.
+
+15.4 Assignment
+
+You may not assign or transfer this License or any rights under it without Licensor's prior written consent. Any attempted assignment in violation of this section is void.
+
+15.5 Governing Law
+
+This License shall be governed by the laws of the Commonwealth of Kentucky, without regard to conflict-of-law principles.
+
+15.6 Jurisdiction
+
+Any dispute arising from or relating to this License or the Software shall be brought exclusively in the state or federal courts located in Kentucky, and You consent to their jurisdiction and venue.
+
+⸻
+
+For commercial, production, partnership, standards, conformance, or licensing inquiries, contact:
+
+Exocortical Concepts, Inc.
+Contact: licensing@persistra.ai

@@ -1,0 +1,133 @@
+name: 🤝 Strategic Partnership
+description: Strategic investment, acquisition, platform partnership, or co-development
+title: "[Strategic]: "
+labels: ["strategic", "high-priority"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Strategic Partnership Inquiries
+        
+        We evaluate partnership opportunities on a selective basis, prioritizing:
+        - Platform integration and co-development
+        - Standards and conformance participation
+        - Strategic investment and acquisition discussions
+        - Hardware acceleration partnerships
+        
+        **Response time:** 5-7 business days for qualified inquiries
+        
+        ---
+
+  - type: input
+    id: organization
+    attributes:
+      label: Organization
+      description: Your company or organization name
+      placeholder: Acme Corp
+    validations:
+      required: true
+
+  - type: input
+    id: contact
+    attributes:
+      label: Contact Email
+      description: Best email to reach you
+      placeholder: you@company.com
+    validations:
+      required: true
+
+  - type: input
+    id: title
+    attributes:
+      label: Your Title/Role
+      description: Your position and decision-making authority
+      placeholder: VP Engineering, CTO, etc.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: partnership_type
+    attributes:
+      label: Partnership Interest
+      description: What type of partnership are you exploring?
+      options:
+        - Strategic investment
+        - Acquisition discussion
+        - Platform integration
+        - Hardware co-development
+        - Standards/conformance participation
+        - Technology partnership
+        - Other (specify below)
+    validations:
+      required: true
+
+  - type: textarea
+    id: background
+    attributes:
+      label: Organization Background
+      description: Brief overview of your organization and relevant capabilities
+      placeholder: We are a...
+    validations:
+      required: true
+
+  - type: textarea
+    id: strategic_interest
+    attributes:
+      label: Strategic Interest
+      description: What specifically interests you about PCS and why?
+      placeholder: We see potential alignment in...
+    validations:
+      required: true
+
+  - type: textarea
+    id: collaboration_scope
+    attributes:
+      label: Proposed Collaboration Scope
+      description: What would a partnership look like?
+      placeholder: We envision...
+    validations:
+      required: true
+
+  - type: dropdown
+    id: timeline
+    attributes:
+      label: Timeline
+      description: What's your evaluation/decision timeline?
+      options:
+        - Active evaluation (< 1 month)
+        - Near-term (1-3 months)
+        - Mid-term (3-6 months)
+        - Long-term strategic
+        - Exploratory
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: authority
+    attributes:
+      label: Decision Authority
+      description: Please confirm
+      options:
+        - label: I have authority to pursue this partnership discussion
+          required: true
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional Context
+      description: Any other relevant information
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+        
+        **What happens next:**
+        1. Your inquiry is reviewed for strategic alignment
+        2. If there's potential fit, we'll send a strategic packet with:
+           - Architecture thesis
+           - Technical paper
+           - Access overview
+        3. We'll schedule an initial discussion
+        
+        **We review strategic inquiries in batches and respond within 5-7 business days if there is potential alignment.**

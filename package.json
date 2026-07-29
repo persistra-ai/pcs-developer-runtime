@@ -1,0 +1,30 @@
+{
+  "name": "pcs-developer-runtime",
+  "version": "0.1.0",
+  "description": "PCS Developer Runtime - Local evaluation runtime for persistent cognitive substrate",
+  "main": "lib/index.js",
+  "type": "module",
+  "bin": {
+    "pcs": "./bin/pcs.js"
+  },
+  "scripts": {
+    "test": "node --test test/*.test.js",
+    "preflight": "./scripts/preflight.sh",
+    "quick-start": "./scripts/quick-start.sh"
+  },
+  "keywords": [
+    "pcs",
+    "persistent-cognitive-substrate",
+    "ai-runtime",
+    "substrate"
+  ],
+  "author": "Persistra",
+  "license": "SEE LICENSE IN LICENSE",
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.20.0",
+    "groq-sdk": "^0.3.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
