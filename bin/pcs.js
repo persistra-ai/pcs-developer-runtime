@@ -86,7 +86,20 @@ async function main() {
       }
     } else if (command === 'constraint') {
       if (subcommand === 'add') {
-        await cli.constraintAdd();
+        const options = {};
+        for (let i = 2; i < args.length; i++) {
+          if (args[i] === '--title' && args[i + 1]) {
+            options.title = args[i + 1];
+            i++;
+          } else if (args[i] === '--rule' && args[i + 1]) {
+            options.rule = args[i + 1];
+            i++;
+          } else if (args[i] === '--mode' && args[i + 1]) {
+            options.mode = args[i + 1];
+            i++;
+          }
+        }
+        await cli.constraintAdd(options);
       } else if (subcommand === 'list') {
         await cli.constraintList();
       } else {
@@ -96,7 +109,14 @@ async function main() {
       }
     } else if (command === 'vision') {
       if (subcommand === 'set') {
-        await cli.visionSet();
+        const options = {};
+        for (let i = 2; i < args.length; i++) {
+          if (args[i] === '--text' && args[i + 1]) {
+            options.text = args[i + 1];
+            i++;
+          }
+        }
+        await cli.visionSet(null, options);
       } else if (subcommand === 'show') {
         await cli.visionShow();
       } else {
