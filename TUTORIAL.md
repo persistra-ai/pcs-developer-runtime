@@ -35,7 +35,7 @@ export ANTHROPIC_API_KEY=your_anthropic_key_here
 export GROQ_API_KEY=your_groq_key_here
 ```
 
-Alternatively, put both keys in a `.env` file in the `pcs-developer-runtime` directory; `pcs` loads it automatically.
+Alternatively, copy `.env.example` to `.env` in the `pcs-developer-runtime` directory and fill in your own keys; `pcs` loads it automatically. (`.env` is gitignored - never commit real keys.)
 
 ---
 
