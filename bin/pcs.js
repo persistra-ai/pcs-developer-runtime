@@ -1,6 +1,16 @@
 #!/usr/bin/env node
 
+import { existsSync } from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
 import { CLI } from '../lib/cli.js';
+
+const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+for (const envPath of [path.join(process.cwd(), '.env'), path.join(repoRoot, '.env')]) {
+  if (existsSync(envPath)) {
+    process.loadEnvFile(envPath);
+  }
+}
 
 const cli = new CLI();
 const args = process.argv.slice(2);
@@ -26,14 +36,14 @@ if (args.length === 0) {
   console.log('  --rationale <text>          Decision rationale (optional)');
   console.log('');
   console.log('Options for "pcs run assistant":');
-  console.log('  --model <name>              Specify model (default: claude-3-5-sonnet-20241022)');
+  console.log('  --model <name>              Specify model (default: claude-sonnet-4-6)');
   console.log('  --resume                    Resume from previous session');
   console.log('  --debug                     Show debug information');
   console.log('');
   console.log('Examples:');
   console.log('  pcs init my-backend');
   console.log('  pcs decision add --title "Use PostgreSQL" --statement "Use PostgreSQL for persistence"');
-  console.log('  pcs run assistant --model llama-3.1-70b-versatile');
+  console.log('  pcs run assistant --model openai/gpt-oss-120b');
   console.log('  pcs run assistant --resume');
   process.exit(0);
 }
@@ -53,7 +63,6 @@ async function main() {
       await cli.init(projectName);
     } else if (command === 'decision') {
       if (subcommand === 'add') {
-        // Parse flags for non-interactive mode
         const options = {};
         for (let i = 2; i < args.length; i++) {
           if (args[i] === '--title' && args[i + 1]) {

@@ -3,6 +3,7 @@ node_modules/
 *.log
 .DS_Store
 projects/
+tutorial-test-*/
 *.swp
 *.swo
 *~

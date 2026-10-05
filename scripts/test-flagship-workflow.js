@@ -50,11 +50,11 @@ async function testWorkflow() {
 
   // Test 3: Model swap with continuity
   console.log('\n' + '='.repeat(60));
-  console.log('TEST 3: Model Swap (Claude → Llama)');
+  console.log('TEST 3: Model Swap (Claude → GPT-OSS)');
   console.log('─'.repeat(60));
   
   const runtime2 = new AssistantRuntime(stateStore, {
-    model: 'llama-3.1-8b-instant',
+    model: 'openai/gpt-oss-120b',
     debug: false
   });
 
@@ -65,7 +65,7 @@ async function testWorkflow() {
   const response3 = await runtime2.processMessage('What are the main architectural decisions so far?');
   
   console.log('Assistant:', response3.content.substring(0, 500) + '...\n');
-  console.log(`Model: ${response3.model || 'llama-3.1-8b-instant'}`);
+  console.log(`Model: ${response3.model || 'openai/gpt-oss-120b'}`);
   console.log(`Provider: ${response3.provider || 'groq'}`);
 
   // Show audit trail
@@ -91,7 +91,7 @@ async function testWorkflow() {
   console.log('─'.repeat(60));
   console.log('\n1. Constraint enforcement: ' + (response2.constraintViolation ? '✓ BLOCKED' : '✗ FAILED'));
   console.log('2. Vision impact: ' + (response1.content.toLowerCase().includes('microservices') || response1.content.toLowerCase().includes('modular') ? '✓ VISIBLE' : '? UNCLEAR'));
-  console.log('3. Model swap: ' + (response3.model && response3.model.includes('llama') ? '✓ SUCCESSFUL' : '✗ FAILED'));
+  console.log('3. Model swap: ' + (response3.model && response3.model.includes('gpt-oss') ? '✓ SUCCESSFUL' : '✗ FAILED'));
   
   console.log('\n=== Test Complete ===\n');
 }

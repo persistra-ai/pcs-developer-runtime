@@ -13,17 +13,16 @@ In this tutorial, you'll experience three architectural moments that demonstrate
 3. **Model changes don't erase work** - Continuity across providers
 
 **Time:** 10-15 minutes  
-**Prerequisites:** Node.js 18+, API keys for Anthropic and Groq
+**Prerequisites:** Node.js 20.6+, API keys for Anthropic and Groq
 
 ---
 
 ## Setup
 
-**Using GitHub Codespaces?** The runtime is already installed and linked. Skip to "Set API Keys" below.
-
-### Install PCS Developer Runtime (Local Setup Only)
+### Install PCS Developer Runtime
 
 ```bash
+git clone git@github.com:persistra-ai/pcs-developer-runtime.git
 cd pcs-developer-runtime
 npm install
 npm link
@@ -36,6 +35,8 @@ export ANTHROPIC_API_KEY=your_anthropic_key_here
 export GROQ_API_KEY=your_groq_key_here
 ```
 
+Alternatively, put both keys in a `.env` file in the `pcs-developer-runtime` directory; `pcs` loads it automatically.
+
 ---
 
 ## Part 1: Initialize Project with Substrate State
@@ -47,28 +48,10 @@ pcs init my-backend
 cd my-backend
 ```
 
-**Expected output:**
-```
-✅ Created PCS project: my-backend
-✅ Initialized substrate state in .pcs/
-✅ Project ready
-
-Next steps:
-  cd my-backend
-  pcs decision add    # Add architectural decisions
-  pcs vision set      # Set project vision
-```
-
 **What happened:**
 - Created a local PCS project
 - Initialized substrate state in `.pcs/`
 - Decisions, constraints, vision, and trace are now persisted outside the model
-
-**Verify:**
-```bash
-ls -la .pcs/
-# Should show: decisions.json, constraints.json, vision.json, trace.json
-```
 
 **Key insight:** This is not a chat session. This is a project with persistent state.
 
@@ -109,35 +92,6 @@ pcs decision list
 ```
 
 **What this shows:** These are not chat notes. They are active project decisions in substrate state.
-
-**See the state yourself:**
-```bash
-cat .pcs/decisions.json
-```
-
-**What you see:**
-```json
-{
-  "decisions": [
-    {
-      "id": "abc123",
-      "title": "Use PostgreSQL for persistence",
-      "statement": "Use PostgreSQL for all data persistence needs",
-      "rationale": "Proven reliability, ACID compliance, strong ecosystem",
-      "created": "2026-05-12T12:00:00Z"
-    },
-    {
-      "id": "def456",
-      "title": "Use gRPC between internal services",
-      "statement": "Internal service communication should use gRPC",
-      "rationale": "Type safety, performance, built-in streaming support",
-      "created": "2026-05-12T12:01:00Z"
-    }
-  ]
-}
-```
-
-**Key insight:** This state exists on your disk, independent of any model or runtime. The assistant doesn't "remember" these decisions—it reads them from authoritative substrate state.
 
 ---
 
@@ -222,7 +176,6 @@ pcs run assistant
 ```
 === PCS Project Assistant: my-backend ===
 Model: claude-sonnet-4-6
-Substrate loaded: 2 decisions, 1 constraint, vision
 Active Decisions: 2
 Active Constraints: 1
 Vision: Set
@@ -230,7 +183,7 @@ Vision: Set
 Type your message (or 'exit' to quit):
 ```
 
-**Key insight:** The runtime pre-loaded substrate state before the first prompt. This is not context-window stuffing—it's architectural binding. The assistant knows about your decisions, constraints, and vision before you say anything.
+**Key insight:** The assistant knows about your decisions, constraints, and vision before you say anything.
 
 ---
 
@@ -353,7 +306,7 @@ This trace shows all substrate state changes and runtime enforcement actions.
 ### Step 9: Resume with Different Model
 
 ```bash
-pcs run assistant --model llama-3.1-8b-instant --resume
+pcs run assistant --model openai/gpt-oss-120b --resume
 ```
 
 **What you see:**
@@ -362,7 +315,7 @@ Resuming session from 5/12/2026, 12:05:00 PM
 Previous model: claude-sonnet-4-6
 
 === PCS Project Assistant: my-backend ===
-Model: llama-3.1-8b-instant
+Model: openai/gpt-oss-120b
 Active Decisions: 2
 Active Constraints: 1
 Vision: Set
@@ -397,7 +350,7 @@ decisions made so far are:
    streaming support...
 ```
 
-**Key insight:** The new model (Llama) correctly recalls:
+**Key insight:** The new model (gpt-oss) correctly recalls:
 - PostgreSQL decision
 - gRPC decision
 - Java-only constraint
@@ -475,34 +428,6 @@ decisions made so far are:
 
 ---
 
-## FAQ: Why Not Just Use System Prompts?
-
-### Q: Why can't I just put "Use Java" in my system prompt?
-
-**A: Because system prompts are advisory and ephemeral.**
-
-| System Prompt | PCS Constraint |
-|---------------|----------------|
-| Advisory suggestion | Structurally binding |
-| Ephemeral (per-session) | Persistent (cross-session) |
-| Subject to prompt injection | Runtime-enforced boundary |
-| Disappears on model change | Survives model transitions |
-| No audit trail | Full decision trace |
-| Probabilistic compliance | Deterministic enforcement |
-
-**The difference:**
-- **System prompt:** "Please use Java"
-- **PCS constraint:** "Backend services **must** use Java; violations blocked at runtime"
-
-**Try it yourself:**
-1. Ask a model with a system prompt "Use Java" to generate Python code
-2. It will often comply despite the instruction
-3. PCS constraints are enforced at the runtime boundary—violations are blocked
-
-**This is why PCS is substrate-centered, not prompt-centered.**
-
----
-
 ## Next Steps
 
 ### Explore More
@@ -560,261 +485,27 @@ Authoritative project state can live outside the model and persist across sessio
 
 ## Troubleshooting
 
-### Quick Fixes
-
-#### Pre-Flight Check
-
-**Before starting, validate your environment:**
-
-```bash
-cd pcs-developer-runtime
-./scripts/preflight.sh
-```
-
-This checks:
-- Node.js version (18+)
-- npm availability
-- Dependencies installed
-- PCS CLI linked
-- API keys set
-- Disk space
-
-#### Quick Start (Automated Setup)
-
-**For automated tutorial setup:**
-
-```bash
-./scripts/quick-start.sh
-```
-
-This automatically:
-- Runs preflight check
-- Installs dependencies
-- Links PCS CLI
-- Creates test project
-- Adds sample decisions
-
----
-
-### Common Issues
-
-#### Issue 1: "pcs: command not found"
-
-**Symptom:** Running `pcs` commands fails
-
-**Solution:**
-```bash
-# Re-link the CLI
-cd pcs-developer-runtime
-npm link
-
-# Verify
-pcs --version
-```
-
-**Alternative (if npm link fails):**
-```bash
-# Use npx instead
-npx pcs init my-backend
-npx pcs decision add
-```
-
----
-
-#### Issue 2: API Keys Not Set
-
-**Symptom:** Commands requiring API access fail
-
-**Solution:**
+### API Keys Not Set
 ```bash
 export ANTHROPIC_API_KEY=your_key_here
 export GROQ_API_KEY=your_key_here
-
-# Verify
-echo $ANTHROPIC_API_KEY
 ```
 
-**For GitHub Codespaces:**
-```bash
-# Set in terminal (temporary)
-export ANTHROPIC_API_KEY=your_key_here
-
-# Or add to ~/.bashrc (persistent)
-echo 'export ANTHROPIC_API_KEY=your_key_here' >> ~/.bashrc
-source ~/.bashrc
-```
-
----
-
-#### Issue 3: Not in PCS Project
-
-**Symptom:** `Error: Not in a PCS project directory`
-
-**Solution:**
+### Not in PCS Project
 ```bash
 # Make sure you're in a project directory
 cd my-backend
 
 # Or create a new project
 pcs init new-project
-cd new-project
-
-# Verify
-ls .pcs/
 ```
 
----
-
-#### Issue 4: Node Version Too Old
-
-**Symptom:** `Error: Node.js version must be 18 or higher`
-
-**Solution:**
+### Commands Not Found
 ```bash
-# Check current version
-node --version
-
-# Install Node 18+ from https://nodejs.org
-# Or use nvm:
-nvm install 18
-nvm use 18
-
-# Verify
-node --version
-```
-
----
-
-#### Issue 5: Dependencies Not Installed
-
-**Symptom:** `Error: Cannot find module...`
-
-**Solution:**
-```bash
+# Re-link the CLI
 cd pcs-developer-runtime
-npm install
-
-# Verify
-ls node_modules/
-```
-
----
-
-#### Issue 6: Permission Errors
-
-**Symptom:** `EACCES: permission denied`
-
-**Solution:**
-```bash
-# Fix npm global permissions (macOS/Linux)
-mkdir ~/.npm-global
-npm config set prefix '~/.npm-global'
-echo 'export PATH=~/.npm-global/bin:$PATH' >> ~/.bashrc
-source ~/.bashrc
-
-# Then re-link
 npm link
 ```
-
----
-
-#### Issue 7: GitHub Codespaces Issues
-
-**Symptom:** Codespace won't start or build fails
-
-**Solution:**
-1. **Check Codespace status** - Wait for build to complete (~1-2 min)
-2. **Rebuild container** - Click "Rebuild Container" in VS Code
-3. **Check logs** - View build logs for specific errors
-4. **Manual setup** - If auto-setup fails:
-   ```bash
-   npm install
-   npm link
-   ./scripts/preflight.sh
-   ```
-
----
-
-### Advanced Troubleshooting
-
-#### Debug Mode
-
-**Enable verbose output:**
-```bash
-DEBUG=* pcs decision add
-```
-
-#### Check State Files
-
-**Inspect substrate state:**
-```bash
-# View decisions
-cat .pcs/decisions.json | json_pp
-
-# View constraints
-cat .pcs/constraints.json | json_pp
-
-# View vision
-cat .pcs/vision.json | json_pp
-```
-
-#### Clean State
-
-**Reset project state:**
-```bash
-# Backup first
-cp -r .pcs .pcs.backup
-
-# Remove state
-rm -rf .pcs
-
-# Re-initialize
-pcs init .
-```
-
----
-
-### Still Having Issues?
-
-1. **Run preflight check:**
-   ```bash
-   ./scripts/preflight.sh
-   ```
-
-2. **Check GitHub Issues:** [pcs-developer-runtime/issues](https://github.com/persistra-ai/pcs-developer-runtime/issues)
-
-3. **Review documentation:** [README.md](README.md), [START_HERE.md](START_HERE.md)
-
-4. **Contact support:** research@persistra.ai (for NDA access holders)
-
----
-
-### Prevention Tips
-
-**Before starting tutorial:**
-
-1. **Run preflight check:**
-   ```bash
-   ./scripts/preflight.sh
-   ```
-
-2. **Use GitHub Codespaces** (zero setup):
-   - Click "Open in GitHub Codespaces" badge in README
-   - Wait for container to build
-   - Start tutorial immediately
-
-3. **Set API keys first:**
-   ```bash
-   export ANTHROPIC_API_KEY=your_key_here
-   export GROQ_API_KEY=your_key_here
-   ```
-
-4. **Verify environment:**
-   ```bash
-   node --version  # Should be 18+
-   npm --version
-   pcs --version
-   ```
 
 ---
 

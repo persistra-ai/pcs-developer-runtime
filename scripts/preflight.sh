@@ -28,16 +28,17 @@ echo -e "${BLUE}[1/6] Checking Node.js version...${NC}"
 
 if ! command -v node &> /dev/null; then
     echo -e "${RED}❌ Node.js not found${NC}"
-    echo -e "   Install Node.js 18+ from: https://nodejs.org"
+    echo -e "   Install Node.js 20.6+ from: https://nodejs.org"
     ERRORS=$((ERRORS + 1))
 else
     NODE_VERSION=$(node --version)
     NODE_MAJOR=$(echo "$NODE_VERSION" | cut -d'v' -f2 | cut -d'.' -f1)
+    NODE_MINOR=$(echo "$NODE_VERSION" | cut -d'v' -f2 | cut -d'.' -f2)
     
-    if [ "$NODE_MAJOR" -lt 18 ]; then
-        echo -e "${RED}❌ Node.js version must be 18 or higher${NC}"
+    if [ "$NODE_MAJOR" -lt 20 ] || { [ "$NODE_MAJOR" -eq 20 ] && [ "$NODE_MINOR" -lt 6 ]; }; then
+        echo -e "${RED}❌ Node.js version must be 20.6 or higher${NC}"
         echo -e "   Found: $NODE_VERSION"
-        echo -e "   Required: v18.0.0+"
+        echo -e "   Required: v20.6.0+"
         ERRORS=$((ERRORS + 1))
     else
         echo -e "${GREEN}✅ Node.js version: $NODE_VERSION${NC}"
@@ -116,7 +117,7 @@ fi
 
 if [ -z "$GROQ_API_KEY" ]; then
     echo -e "${YELLOW}⚠️  GROQ_API_KEY not set${NC}"
-    echo -e "   Tutorial requires Groq API access (Llama models)"
+    echo -e "   Tutorial requires Groq API access (model swap step)"
     echo -e "   Set with: export GROQ_API_KEY=your_key_here"
     WARNINGS=$((WARNINGS + 1))
 else

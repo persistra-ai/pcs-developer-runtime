@@ -3,7 +3,7 @@
 **Run the tutorial.** It's 10 minutes and shows you:
 - State outside the model (see `.pcs/decisions.json` on disk)
 - Binding constraints (violations blocked at runtime)
-- Cross-model continuity (Claude → Llama without losing state)
+- Cross-model continuity (Claude → Groq-hosted GPT-OSS without losing state)
 
 **[→ TUTORIAL.md](TUTORIAL.md)**
 
@@ -52,7 +52,7 @@
 2. Experience:
    - State persisting outside the model (see `.pcs/decisions.json` on disk)
    - Runtime constraint enforcement (violations blocked)
-   - Cross-model continuity (switch from Claude to Llama without losing state)
+   - Cross-model continuity (switch from Claude to a Groq-hosted model without losing state)
 3. Then read the architecture docs to understand what you just experienced
 
 ---

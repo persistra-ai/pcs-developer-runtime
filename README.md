@@ -2,41 +2,6 @@
 
 **Local evaluation runtime for persistent cognitive substrate**
 
-[![CI](https://github.com/persistra-ai/pcs-developer-runtime/actions/workflows/ci.yml/badge.svg)](https://github.com/persistra-ai/pcs-developer-runtime/actions/workflows/ci.yml)
-[![Node.js Version](https://img.shields.io/badge/node-%3E%3D18.0.0-brightgreen)](https://nodejs.org/)
-[![License](https://img.shields.io/badge/license-Evaluation-blue)](LICENSE)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/persistra-ai/pcs-developer-runtime?quickstart=1)
-
----
-
-## Quick Start (3 Steps)
-
-**Option 1: GitHub Codespaces (Recommended - Zero Setup)**
-
-1. Click the "Open in GitHub Codespaces" badge above
-2. Set API keys in the terminal:
-   ```bash
-   export ANTHROPIC_API_KEY=your_key_here
-   export GROQ_API_KEY=your_key_here
-   ```
-3. Follow **[TUTORIAL.md](TUTORIAL.md)** (10 minutes)
-
-**Option 2: Local Setup**
-
-```bash
-# 1. Clone and install
-git clone https://github.com/persistra-ai/pcs-developer-runtime.git
-cd pcs-developer-runtime
-npm install && npm link
-
-# 2. Set API keys
-export ANTHROPIC_API_KEY=your_key_here
-export GROQ_API_KEY=your_key_here
-
-# 3. Follow the tutorial
-# See TUTORIAL.md for complete walkthrough
-```
-
 ---
 
 ## Overview
@@ -52,24 +17,55 @@ The current public runtime is intentionally focused on one flagship workflow—*
 - **Decisions persist outside the model** - Project decisions are stored in authoritative substrate state, not chat memory
 - **Constraints remain binding** - Runtime enforces project constraints, blocking violations
 - **Vision persists across sessions** - Project vision survives restarts and model changes
-- **Model changes do not erase project state** - Swap between Anthropic and local models without losing continuity
+- **Model changes do not erase project state** - Swap between Anthropic and Groq-hosted models without losing continuity
 - **Audit/decision trace stays inspectable** - Full visibility into what decisions are active and what blocked requests
 
 ---
 
-## What You'll Experience
+## Installation
 
-**Three architectural moments that make PCS different:**
+**Requires Node.js 20.6 or later** (check with `node --version`).
+
+```bash
+git clone git@github.com:persistra-ai/pcs-developer-runtime.git
+cd pcs-developer-runtime
+npm install
+npm link  # Makes 'pcs' command available globally
+```
+
+### Environment Setup
+
+Create a `.env` file in the `pcs-developer-runtime` directory with your API keys:
+
+```bash
+ANTHROPIC_API_KEY=your_anthropic_key_here
+GROQ_API_KEY=your_groq_key_here
+```
+
+`pcs` loads `.env` from the current directory and from the `pcs-developer-runtime` directory. Variables already exported in your shell take precedence.
+
+### Automated Setup (Optional)
+
+```bash
+./scripts/preflight.sh    # Check Node, npm, CLI, and API keys
+./scripts/quick-start.sh  # Install, create a test project, add sample decisions
+```
+
+---
+
+## Get Started: 10-Minute Tutorial
+
+**Experience the three architectural moments that make PCS different:**
 
 1. **State lives outside the model** - Decisions and constraints persist independently
 2. **Constraints remain binding** - Runtime enforcement, not advisory prompts  
 3. **Model changes don't erase work** - Continuity across providers
 
-**→ [TUTORIAL.md](TUTORIAL.md)** has the complete 10-minute walkthrough with actual runtime transcripts.
+**→ [Start the Tutorial](TUTORIAL.md)** - Complete walkthrough with actual runtime transcripts
 
 ---
 
-## Commands Reference
+## Quick Start
 
 ```bash
 # Create a new project
@@ -161,13 +157,13 @@ constraints if they need to change.
 
 > exit
 
-# Switch to local model
-$ pcs run assistant --model llama-3.1-8b-instant --resume
+# Switch to a Groq-hosted model
+$ pcs run assistant --model openai/gpt-oss-120b --resume
 Resuming session from 5/12/2026, 11:57:07 AM
 Previous model: claude-sonnet-4-6
 
 === PCS Project Assistant: my-backend ===
-Model: llama-3.1-8b-instant
+Model: openai/gpt-oss-120b
 [Session continues with same decisions/constraints/vision]
 
 > What are the main architectural decisions so far?
@@ -196,7 +192,7 @@ $ pcs audit show
   Action: Request blocked by runtime enforcement
 
 [5/12/2026, 11:57:07 AM] Session Started
-  Model: llama-3.1-8b-instant
+  Model: openai/gpt-oss-120b
   Provider: groq
   Resumed from previous session
 
@@ -210,7 +206,7 @@ This trace shows all substrate state changes and runtime enforcement actions.
 The Developer Runtime includes:
 - **Single-user, local-only** evaluation experience
 - **File-based state storage** for decisions, constraints, vision, decision trace
-- **Two model integrations**: Anthropic (cloud) and local models via Groq
+- **Two model integrations**: Anthropic (cloud API) and Groq (cloud API)
 - **Runtime constraint enforcement** - blocks violations, records in decision trace
 - **Session resumption** - continue work across sessions
 - **Model swap capability** - switch models without losing state
@@ -270,10 +266,10 @@ For production deployment, team coordination, advanced salience, or enterprise f
 - `claude-opus-4-7`
 - `claude-haiku-4-5-20251001`
 
-### Groq (Local Inference)
-- `llama-3.1-8b-instant` (default)
-- `meta-llama/llama-4-scout-17b-16e-instruct`
-- `groq/compound-mini`
+### Groq (Cloud API)
+- `openai/gpt-oss-120b` (default)
+- `openai/gpt-oss-20b`
+- `qwen/qwen3.8-27b`
 
 ---
 

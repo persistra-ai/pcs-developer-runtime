@@ -4,7 +4,7 @@ This directory contains the GitHub Codespaces / VS Code Dev Container configurat
 
 ## What This Provides
 
-- **Pre-configured Node.js 18** environment
+- **Pre-configured Node.js 20** environment
 - **Automatic dependency installation** (`npm install`)
 - **Pre-linked CLI** (`npm link` runs automatically)
 - **Zero local setup required** - works in browser via GitHub Codespaces
@@ -27,7 +27,7 @@ This directory contains the GitHub Codespaces / VS Code Dev Container configurat
 
 ## Configuration Details
 
-- **Base Image:** `mcr.microsoft.com/devcontainers/javascript-node:18`
+- **Base Image:** `mcr.microsoft.com/devcontainers/javascript-node:20`
 - **Post-Create Command:** `npm install && npm link`
 - **Extensions:** ESLint, Prettier (optional)
 - **User:** `node` (non-root)
